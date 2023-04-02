@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>#{showTheaterBean.theater.name} information</title>
+        <style type="text/css">
+            .flex {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }    
+            .classic {
+
+                position: absolute;
+                top: 37%;
+                left: 50%;
+                transform: translate(-52%, -50%);
+            }        
+            body {
+                background-color: #faf0dc;
+                background-repeat: no-repeat;
+                background-size: 100%;
+            }
+            table.people td {
+                padding: 5px;
+                text-align: left;
+                font-family: Arial, Verdana, sans-serif;
+                border: 1px solid #000; 
+                background-color: #ffffff;    
+                color: #BB0000;    
+                border-bottom: 2px solid #000;
+            }   
+        </style>
+    </h:head>
+    <h:body class="classic" >
+        <h:form>
+            Thank you for your payment!
+            <br/>
+            An email with your ticket(s) will arrive shortly.
+            <br/>
+            <br/>
+            <h:commandButton value="Back to List of Zip Codes"                                  
+                             action="MainPage.xhtml?faces-redirect=true"/>  
+            <br/>
+            <h:commandButton value="Back to List of Theaters"                                  
+                             action="Theaters.xhtml?faces-redirect=true"/>  
+            <br/>
+            <h:commandButton value="Back to List of Movies"                                  
+                             action="Movies.xhtml?faces-redirect=true"/>  
+        </h:form>
+    </h:body>
+</html>

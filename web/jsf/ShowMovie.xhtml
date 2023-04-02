@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>#{showMovieBean.movie.name} information</title>
+        <style type="text/css">
+
+            .classic {
+                position: absolute;
+                top: 75%;
+                left: 50%;
+                transform: translate(-30%, -50%);
+            }
+            .flex {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            table.people td {
+                padding: 5px;
+                text-align: left;
+                font-family: Arial, Verdana, sans-serif;
+                border: 1px solid #000; 
+                background-color: #f9e4b7;    
+                color: #BB0000;    
+                border-bottom: 2px solid #000;
+            }   
+        </style>
+    </h:head>
+    <h:body style="background-color:black">
+
+        <h:form style="color:white">
+            <h:panelGrid columns="2" >
+                <h:graphicImage  value = "#{showMovieBean.movie.imageurl}" 
+                                 width="333" height="444"/>
+                <h:panelGrid columns="2" >
+                    <h:outputLabel value="Name: "/>
+                    <h:outputText value="#{showMovieBean.movie.name}"/>
+                    <h:outputLabel value="Duration: "/>
+                    <h:outputText value="#{showMovieBean.movie.duration}"/>
+                    <h:outputLabel value="Description: "/>
+                    <h:outputText value="#{showMovieBean.movie.description}"/>
+                    <h:dataTable styleClass="people" value="#{showMovieBean.genreList}" var="genre">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Genre"/>
+                            </f:facet>
+                            <h:outputText value="#{genre.name}"/>
+                        </h:column>
+                    </h:dataTable>
+                    <h:dataTable styleClass="people" value="#{showMovieBean.showtimeList}" var="showtime">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Show Time (click to book)"/>
+                            </f:facet>
+                            <div class="flex">
+                                <h:commandLink value="#{showtime.showtime}"
+                                               action="#{showMovieBean.showBuyingTicketForMovie}" >
+                                    <f:param name="movieid" value="#{showMovieBean.movie.movieid}"/>
+                                    <f:param name="chosenShowtime" value="#{showtime.showtime}"/>
+                                </h:commandLink>
+                            </div>
+                        </h:column>
+
+                    </h:dataTable>
+
+                </h:panelGrid>
+            </h:panelGrid>
+
+            <h:commandButton value="Back to List of Zip Codes"                                  
+                             action="MainPage.xhtml?faces-redirect=true"/>
+            <br/>
+            <h:commandButton value="Back to List of Theaters"                                  
+                             action="Theaters.xhtml?faces-redirect=true"/>  
+            <br/>
+            <h:commandButton value="Back to List of Movies"                                  
+                             action="Movies.xhtml?faces-redirect=true"/> 
+            <br/>
+        </h:form>
+        <div class="classic">
+            <h:graphicImage  value="https://wallpapercave.com/wp/wp4768223.jpg" 
+                             width="400" height="400"/>
+        </div>
+    </h:body>
+</html>

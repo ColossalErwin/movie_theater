@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>List of zip codes for theaters</title>
+        <!-- inline stylesheet, could be put in a css file -->
+        <style type="text/css">
+            .classic {
+                position: absolute;
+                top: 40%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            body {
+                background-image: url('https://entrepreneurship.babson.edu/wp-content/uploads/2020/10/Movie-1200-630.jpg');
+                background-repeat: no-repeat;
+                background-size: cover;
+                align-self: center;
+            }
+            table.people td {
+                padding: 5px;
+                text-align: left;
+                font-family: Arial, Verdana, sans-serif;
+                border: 1px solid #000; 
+                background-color: #ffffff;    
+                color: #BB0000;    
+                border-bottom: 2px solid #000;
+            }
+            .container {
+                background-color: #ffefcb;
+                padding: 5px 20px 15px 20px;
+                border: 1px solid lightgrey;
+                border-radius: 3px;
+            }
+        </style>
+    </h:head>
+    <h:body>
+
+        <div class="classic">
+            <f:view class="container">
+
+                <h:form class="container">
+                    <h3> Choose a zip code </h3>
+
+                    <h:dataTable styleClass="people"
+                                 value="#{mainPageBean.locationList}" var="location">
+
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Zip Code" style="color:white; background-color: grey;"/>
+                            </f:facet>
+                            <h:outputText value="#{location.zipcode}"/>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Select" style="color:white; background-color: grey;"/>
+                            </f:facet>
+                            <h:commandLink value="Show" 
+                                           action="#{showLocationBean.showLocation(location)}" >
+                            </h:commandLink>
+
+                        </h:column>
+                    </h:dataTable>
+
+                </h:form>
+            </f:view>
+        </div>
+    </h:body>
+</html>
+

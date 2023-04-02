@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Movies for #{showTheaterBean.theater.name}</title>
+        <style type="text/css">
+            .classic {
+                position: absolute;
+                top: 40%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }    
+            .flex {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            body {
+                background-image: url('https://www.gamespot.com/a/uploads/original/1576/15769789/3398524-sekiro_03%20%28embargo%206.11%40%203pm%20pt%29.jpg');
+                background-repeat: no-repeat;
+                background-size: 100%;
+            }
+            table.people td {
+                padding: 5px;
+                text-align: left;
+                font-family: Arial, Verdana, sans-serif;
+                border: 1px solid #000; 
+                background-color: #f9e4b7;    
+                color: #BB0000;    
+                border-bottom: 2px solid #000;
+            }   
+        </style>
+    </h:head>
+    <h:body class="classic">
+        <div>
+            <f:view>
+                <h3 style="color:white;" class="flex"> <div> Movies available for #{showTheaterBean.theater.name} </div>  </h3>
+                <h:form>
+                    <h:dataTable styleClass="people" value="#{showTheaterBean.movieList}" var="movie">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Movie name" style="color:white; background-color: grey;"/>
+                            </f:facet>
+                            <h:outputText value="#{movie.name}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Select" style="color:white; background-color: grey;"/>
+                            </f:facet>
+                            <h:commandLink value="See Movie info"  
+                                           action="#{showMovieBean.showMovie(movie, showTheaterBean.theater)}"  >
+                            </h:commandLink>
+                        </h:column>
+
+                    </h:dataTable>
+
+                    <h:commandButton value="Back to List of Zip Codes"                                  
+                                     action="MainPage.xhtml?faces-redirect=true"/>  
+                    <div></div>
+                    <h:commandButton value="Back to Theater"                                  
+                                     action="#{showTheaterBean.backToTheater}"> 
+                        <f:param name="theaterid" value="#{showTheaterBean.theater.theaterid}" />
+                    </h:commandButton>
+                </h:form>
+            </f:view>
+        </div>
+    </h:body>
+</html>

@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Buying ticket for #{showMovieBean.movie.name}</title>
+        <style type="text/css">
+            .classic {
+                position: absolute;
+                top: 40%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            .flex {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            table.people td {
+                padding: 5px;
+                text-align: left;
+                font-family: Arial, Verdana, sans-serif;
+                border: 1px solid #000; 
+                background-color: #f9e4b7;    
+                color: #BB0000;    
+                border-bottom: 2px solid #000;
+            }   
+        </style>
+    </h:head>
+    <h:body class="flex" style="background-color:#ffefcb">
+        <div class="flex">
+            <h2>
+                Book Your Ticket(s)
+            </h2>
+        </div>
+        <datatable class="classic">
+            <column>
+                <h:panelGrid columns="2" >
+                    <h:graphicImage  value = "#{showMovieBean.movie.imageurl}" 
+                                     width="200" height="300"/> 
+
+                    <h:panelGrid columns="2" >
+                        <h:outputLabel value="Movie: "/>
+                        <h:outputText value="#{showMovieBean.movie.name}"/>
+                        <h:outputLabel value="Theater: "/>
+                        <h:outputText value="#{showTheaterBean.theater.name}"/>
+                        <h:outputLabel value="Showtime: "/>
+                        <h:outputText value="#{showMovieBean.showtime}"/>
+
+                    </h:panelGrid>
+                </h:panelGrid>
+            </column>
+
+            <column>
+                <h:form>
+                    <h:panelGrid columns="2" >
+                        <h:outputLabel value="Cost per ticket: $10"/>
+                        <div/>
+                        <h:panelGrid columns="2" >
+                            <h:outputLabel value="Enter the number of tickets you want to purchase: "/>
+                            <h:inputText value="#{buyingTicketBean.number}" converterMessage="Please enter digits only." />
+
+                            <h:commandButton value="Back to Movie" action="#{showMovieBean.showMovie(showMovieBean.movie, showTheaterBean.theater)}"/>
+                            <h:commandButton style="background-color:greenyellow" value="Confirm and go to payment" action="#{buyingTicketBean.confirmNumberOfTickets}">
+                                <f:param name="movieid" value="#{showMovieBean.movie.movieid}" />
+                                <f:param name="theaterid" value="#{showTheaterBean.theater.theaterid}" />
+                            </h:commandButton>
+
+                        </h:panelGrid>
+                    </h:panelGrid>
+                </h:form>
+            </column>
+        </datatable>       
+    </h:body>
+</html>
+
